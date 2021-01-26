@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 import {
   AppBar,
   Toolbar,
@@ -8,11 +8,11 @@ import {
   withStyles,
   Grid,
   SwipeableDrawer,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import Link from "@material-ui/core/Link";
-import { Component } from "react";
+} from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
+import SearchIcon from "@material-ui/icons/Search"
+import Link from "@material-ui/core/Link"
+import { Component } from "react"
 // import {BrowserRouter} from "react-router-dom";
 // import { Routes } from '../routes'
 
@@ -32,28 +32,28 @@ const styleSheet = (theme) => ({
   toolbar: theme.mixins.toolbar,
 
   myContentGrid: { width: "calc(100% - 10px)", margin: "auto" },
-});
+})
 
 class MyNavbar extends Component {
   constructor(props) {
-    super(props);
-    this.state = { drawerActivate: false, drawer: false, searcher: false };
-    this.createDrawer = this.createDrawer.bind(this);
-    this.destroyDrawer = this.destroyDrawer.bind(this);
+    super(props)
+    this.state = { drawerActivate: false, drawer: false, searcher: false }
+    this.createDrawer = this.createDrawer.bind(this)
+    this.destroyDrawer = this.destroyDrawer.bind(this)
   }
 
   componentDidMount() {
     if (window.innerWidth <= 600) {
-      this.setState({ drawerActivate: true });
+      this.setState({ drawerActivate: true })
     }
 
     window.addEventListener("resize", () => {
       if (window.innerWidth <= 600) {
-        this.setState({ drawerActivate: true });
+        this.setState({ drawerActivate: true })
       } else {
-        this.setState({ drawerActivate: false });
+        this.setState({ drawerActivate: false })
       }
-    });
+    })
   }
 
   // Small Screens
@@ -71,17 +71,22 @@ class MyNavbar extends Component {
               <MenuIcon
                 className={this.props.classes.sideBarIcon}
                 onClick={() => {
-                  this.setState({ drawer: true });
+                  this.setState({ drawer: true })
                 }}
               />
 
               <Typography color="inherit" variant="h6">
-                LOGO
+                {/* <img */}
+                {/*  src={"/favicon.ico"} */}
+                {/*  alt="Logo" */}
+                {/*  width={"80px"} */}
+                {/*  height={"80px"} */}
+                {/* /> */}
               </Typography>
               <SearchIcon
                 className={this.props.classes.sideBarIcon}
                 onClick={() => {
-                  this.setState({ searcher: true });
+                  this.setState({ searcher: true })
                 }}
               />
             </Grid>
@@ -90,73 +95,61 @@ class MyNavbar extends Component {
         <SwipeableDrawer
           open={this.state.drawer}
           onClose={() => {
-            this.setState({ drawer: false });
+            this.setState({ drawer: false })
           }}
           onOpen={() => {
-            this.setState({ drawer: true });
+            this.setState({ drawer: true })
           }}
         >
           <div
             tabIndex={0}
             role="button"
             onClick={() => {
-              this.setState({ drawer: false });
+              this.setState({ drawer: false })
             }}
             onKeyDown={() => {
-              this.setState({ drawer: false });
+              this.setState({ drawer: false })
             }}
           >
             <List className={this.props.classes.list}>
-              <ListItem key={1} button divider>
-                {" "}
+              <ListItem key={1} divider style={{ justifyContent: "center" }}>
+                <img
+                  src={"/favicon.ico"}
+                  alt="Logo"
+                  width={"100px"}
+                  height={"100px"}
+                />
+              </ListItem>
+              <ListItem key={2} button style={{ justifyContent: "center" }}>
                 <Link color="inherit" href={"/"}>
-                  New
+                  <img
+                    src={"/instagram.png"}
+                    alt="Instagram"
+                    width={"50px"}
+                    height={"50px"}
+                  />
                 </Link>
               </ListItem>
-              <ListItem key={2} button divider>
-                {" "}
+              <ListItem key={3} button style={{ justifyContent: "center" }}>
                 <Link color="inherit" href={"/"}>
-                  Threads
-                </Link>
-              </ListItem>
-              <ListItem key={3} button divider>
-                {" "}
-                <Link color="inherit" href={"/"}>
-                  Ask
-                </Link>{" "}
-              </ListItem>
-              <ListItem key={3} button divider>
-                {" "}
-                <Link color="inherit" href={"/"}>
-                  Submit
-                </Link>
-              </ListItem>
-              <ListItem key={3} button divider>
-                {" "}
-                <Link
-                  color="inherit"
-                  href={"/" + localStorage.getItem("user_id")}
-                >
-                  User
-                </Link>
-              </ListItem>
-              <ListItem key={3} button divider>
-                {" "}
-                <Link color="inherit" href={"/"}>
-                  {" "}
-                  Manage API key
+                  <img
+                    src={"/youtube.png"}
+                    alt="Instagram"
+                    width={"85px"}
+                    height={"53px"}
+                  />
                 </Link>
               </ListItem>
             </List>
           </div>
         </SwipeableDrawer>
       </>
-    );
+    )
   }
 
   // Larger Screens
   destroyDrawer() {
-    const { classes } = this.props;
+    const { classes } = this.props
     return (
       <>
         <AppBar>
@@ -231,7 +224,7 @@ class MyNavbar extends Component {
           </Toolbar>
         </AppBar>
       </>
-    );
+    )
   }
 
   render() {
@@ -245,12 +238,12 @@ class MyNavbar extends Component {
           {/* </BrowserRouter> */}
         </div>
       </>
-    );
+    )
   }
 }
 
 MyNavbar.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styleSheet)(MyNavbar);
+export default withStyles(styleSheet)(MyNavbar)
